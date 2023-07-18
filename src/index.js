@@ -7,6 +7,8 @@ const dummyComponent = new DummyComponent();
 const popupManager = new PopupManager();
 const popupContainer = new PopupContainer(dummyComponent);
 
+// popupContainer.attachComponent(dummyComponent);
+
 document.querySelectorAll(".first")
     .forEach((el) => popupManager.attachPopupToElement(el));
 

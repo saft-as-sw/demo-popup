@@ -1,19 +1,21 @@
-export class PopupContainer {
+export class PopupContainer extends HTMLElement {
 
     #popupBackground = undefined;
     #popupContent = undefined;
-    #component = undefined;
 
     constructor(component) {
+        super();
+
+        const shadow = this.attachShadow({ mode: 'open' });
+
         this.#popupBackground = document.createElement("div");
         this.#popupBackground.classList.add("popup-background");
+        shadow.appendChild(this.#popupBackground);
 
         this.#popupContent = document.createElement("div");
         this.#popupContent.classList.add("popup-content");
+        this.#popupContent.appendChild(component);
         this.#popupBackground.appendChild(this.#popupContent);
-
-        this.#component = component;
-        this.#popupContent.appendChild(this.#component);
 
         const style = document.createElement("style");
         style.textContent = STYLE;
@@ -26,8 +28,11 @@ export class PopupContainer {
         });
     }
 
+
     attachPopupToElement(element) {
-        element.addEventListener("click", (event) => this.#openPopupAtClickOnElement(event));
+        element.addEventListener(
+            "click", (event) => this.#openPopupAtClickOnElement(event)
+        );
     }
 
     #openPopupAtClickOnElement(event) {
@@ -45,6 +50,8 @@ export class PopupContainer {
     }
 }
 
+customElements.define('popup-container', PopupContainer);
+
 const STYLE = `
 .popup-background {
     position: fixed;
@@ -58,6 +65,9 @@ const STYLE = `
 }
 
 .popup-content {
+    background-color: cyan;
     position: absolute;
+    width: auto;
+    height: auto;
 }
 `;
