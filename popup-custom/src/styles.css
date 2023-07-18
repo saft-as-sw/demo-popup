@@ -15,7 +15,12 @@ table, tr, td {
 
 .popup-content {
     background-color: burlywood;
-    width: 100px;
-    height: 200px;
     position: absolute;
+}
+
+.custom-box {
+    width: 100px;
+    height: 50px;
+    border: solid 2px;
+    margin: 5px;
 }

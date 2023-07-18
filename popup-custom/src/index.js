@@ -1,7 +1,7 @@
-import { PopupManager } from "./popup-manager.js";
+import { PopupCustom } from "./popup-custom.js";
 
 
-const popupManager = new PopupManager();
+const popup = new PopupCustom();
 
 document.querySelectorAll(".popup-source")
-    .forEach((el) => popupManager.attachPopupToElement(el));
+    .forEach((el) => popup.attachPopupToElement(el));

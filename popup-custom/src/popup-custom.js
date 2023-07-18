@@ -1,4 +1,4 @@
-export class PopupManager {
+export class PopupCustom {
 
     #popupBackground = undefined;
     #popupContent = undefined;
@@ -9,6 +9,9 @@ export class PopupManager {
 
         this.#popupContent = document.createElement("div");
         this.#popupContent.classList.add("popup-content");
+
+        this.#fillPopupContent();
+
         this.#popupBackground.appendChild(this.#popupContent);
 
         window.addEventListener("click", (event) => {
@@ -16,6 +19,16 @@ export class PopupManager {
                 this.#hidePopup();
             }
         });
+    }
+
+    #fillPopupContent() {
+        for (let i = 0; i < 3; i++) {
+            const box = document.createElement("div");
+            box.classList.add("custom-box");
+            box.id = `box-${i}`;
+            box.textContent = `BOX ${i}`;
+            this.#popupContent.appendChild(box);
+        }
     }
 
     attachPopupToElement(element) {
