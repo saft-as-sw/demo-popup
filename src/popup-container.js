@@ -2,14 +2,18 @@ export class PopupContainer {
 
     #popupBackground = undefined;
     #popupContent = undefined;
+    #component = undefined;
 
-    constructor() {
+    constructor(component) {
         this.#popupBackground = document.createElement("div");
         this.#popupBackground.classList.add("popup-background");
 
         this.#popupContent = document.createElement("div");
         this.#popupContent.classList.add("popup-content");
         this.#popupBackground.appendChild(this.#popupContent);
+
+        this.#component = component;
+        this.#popupContent.appendChild(this.#component);
 
         const style = document.createElement("style");
         style.textContent = STYLE;
@@ -54,9 +58,6 @@ const STYLE = `
 }
 
 .popup-content {
-    background-color: blue;
-    width: 100px;
-    height: 200px;
     position: absolute;
 }
 `;
