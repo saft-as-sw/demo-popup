@@ -29,6 +29,7 @@ customElements.define('dummy-component', DummyComponent);
 const STYLE = `
 
 .main {
+    background-color: cyan;
     border: dashed 1px;
     padding: 5px;
 }

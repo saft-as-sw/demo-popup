@@ -72,7 +72,6 @@ const STYLE = `
 }
 
 .popup-content {
-    background-color: cyan;
     position: absolute;
     width: auto;
     height: auto;
