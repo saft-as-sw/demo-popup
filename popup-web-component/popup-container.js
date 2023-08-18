@@ -2,6 +2,7 @@ export class PopupContainer extends HTMLElement {
 
     #popupBackground = undefined;
     #popupContent = undefined;
+    poppingElement = undefined;
 
     constructor(component) {
         super();
@@ -23,11 +24,14 @@ export class PopupContainer extends HTMLElement {
 
         window.addEventListener("click", (event) => {
             if (event.target === this.#popupBackground) {
-                this.#hidePopup();
+                const customEventCickOutside = new CustomEvent("clickoutside", {
+                    composed: true,
+                    bubbles: true
+                });
+                this.dispatchEvent(customEventCickOutside);
             }
         });
     }
-
 
     attachPopupToElement(element) {
         element.addEventListener(
@@ -35,7 +39,13 @@ export class PopupContainer extends HTMLElement {
         );
     }
 
+    close() {
+        this.#popupBackground.remove();
+    }
+
     #openPopupAtClickOnElement(event) {
+        this.poppingElement = event.target;
+
         const x = event.clientX;
         const y = event.clientY;
 
@@ -45,9 +55,6 @@ export class PopupContainer extends HTMLElement {
         document.body.appendChild(this.#popupBackground);
     }
 
-    #hidePopup() {
-        this.#popupBackground.remove();
-    }
 }
 
 customElements.define('popup-container', PopupContainer);

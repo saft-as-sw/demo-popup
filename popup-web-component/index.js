@@ -6,3 +6,9 @@ const popupContainer = new PopupContainer(dummyComponent);
 
 document.querySelectorAll(".popup-source")
     .forEach((el) => popupContainer.attachPopupToElement(el));
+
+popupContainer.addEventListener("clickoutside", () => {
+    if (popupContainer.poppingElement.classList.contains("optional")) {
+        popupContainer.close();
+    }
+});

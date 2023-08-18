@@ -26,7 +26,6 @@ export class DummyComponent extends HTMLElement {
 
 customElements.define('dummy-component', DummyComponent);
 
-
 const STYLE = `
 
 .main {
